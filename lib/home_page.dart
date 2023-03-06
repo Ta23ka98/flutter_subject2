@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_subject2/music_page.dart';
+import 'album.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  //const HomePage({Key? key}) : super(key: key);
+
+  List<Album> albumList = [
+    Album(
+        imagePath: "images/music1.png",
+        title: "伸び仕草懲りて暇乞い",
+        artist: "ずっと真夜中でいいのに"),
+    Album(
+        imagePath: "images/music2.png",
+        title: "Stairway to Heaven",
+        artist: "Led Zeppelin"),
+    Album(
+      imagePath: "images/music3.png",
+      title: "KICK BACK",
+      artist: "米津玄師",
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +59,11 @@ class HomePage extends StatelessWidget {
           ),
           SizedBox(
             height: 300,
-            child: ListView(
+            child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              children: [
-                Padding(
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(
                     child: Column(
@@ -60,19 +77,22 @@ class HomePage extends StatelessWidget {
                           width: 200,
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
-                              child: Image.asset("images/music_image1.png")),
+                              child: Image.asset("albumList[index].imagePath")),
                         ),
-                        const Text("Catharsis"),
-                        const Text("Jacob Muller"),
+                        Text(albumList[index].title.toString()),
+                        Text(albumList[index].artist.toString()),
                       ],
                     ),
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => MusicPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) =>
+                                  MusicPage(album: albumList[index])));
                     },
                   ),
-                ),
-              ],
+                );
+              },
             ),
           ),
           Row(

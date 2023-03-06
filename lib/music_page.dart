@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'album.dart';
 
 class MusicPage extends StatefulWidget {
   //const MusicPage({Key? key}) : super(key: key);
-  MusicPage(this.imagePath, this.title, this.atrist);
-  String imagePath;
-  String title;
-  String atrist;
+  MusicPage({required Album album});
+
+  Album? album;
 
   @override
   State<MusicPage> createState() => _MusicPageState();
