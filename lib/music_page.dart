@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
 class MusicPage extends StatefulWidget {
-  const MusicPage({Key? key}) : super(key: key);
+  //const MusicPage({Key? key}) : super(key: key);
+  MusicPage(this.imagePath, this.title, this.atrist);
+  String imagePath;
+  String title;
+  String atrist;
 
   @override
   State<MusicPage> createState() => _MusicPageState();
 }
 
 class _MusicPageState extends State<MusicPage> {
-  double _value = 0.5;
+  final double _value = 0;
+  int playtime = const Duration(seconds: 300).inSeconds;
+  bool onTapped = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,15 +43,25 @@ class _MusicPageState extends State<MusicPage> {
           ),
           Column(
             children: [
-              Slider(value: _value, onChanged: null),
+              Slider(
+                  min: 0,
+                  max: 300,
+                  activeColor: Colors.white,
+                  value: playtime.toDouble(),
+                  onChanged: (e) => setState(() {
+                        playtime = e.toInt();
+                      })),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text("0:00", style: TextStyle(color: Colors.grey)),
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text(playtime.toString(),
+                        style: const TextStyle(
+                          color: Colors.grey,
+                        )),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(right: 20),
                     child: Text("5:00", style: TextStyle(color: Colors.grey)),
                   ),
@@ -55,10 +71,33 @@ class _MusicPageState extends State<MusicPage> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              IconButton(onPressed: null, icon: Icon(Icons.play_arrow)),
-              IconButton(onPressed: null, icon: Icon(Icons.play_arrow)),
-              IconButton(onPressed: null, icon: Icon(Icons.play_arrow)),
+            children: [
+              IconButton(
+                  iconSize: 50,
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.skip_previous,
+                  )),
+              IconButton(
+                  iconSize: 70,
+                  onPressed: () {
+                    setState(() {
+                      onTapped = !onTapped;
+                    });
+                  },
+                  icon: onTapped
+                      ? const Icon(
+                          Icons.stop_circle,
+                        )
+                      : const Icon(
+                          Icons.play_circle,
+                        )),
+              IconButton(
+                  iconSize: 50,
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.skip_next,
+                  )),
             ],
           ),
           const SizedBox(height: 20),
