@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_subject2/home_page.dart';
-import 'package:flutter_subject2/music_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
