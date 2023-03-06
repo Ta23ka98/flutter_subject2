@@ -17,6 +17,7 @@ class _MusicPageState extends State<MusicPage> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
+            padding: const EdgeInsets.all(30),
             child: Image.asset("images/music_image1.png"),
           ),
           Column(
@@ -39,9 +40,15 @@ class _MusicPageState extends State<MusicPage> {
               Slider(value: _value, onChanged: null),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("data"),
-                  Text("data"),
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Text("0:00", style: TextStyle(color: Colors.grey)),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 20),
+                    child: Text("5:00", style: TextStyle(color: Colors.grey)),
+                  ),
                 ],
               ),
             ],
@@ -54,6 +61,7 @@ class _MusicPageState extends State<MusicPage> {
               IconButton(onPressed: null, icon: Icon(Icons.play_arrow)),
             ],
           ),
+          const SizedBox(height: 20),
         ],
       ),
     );
