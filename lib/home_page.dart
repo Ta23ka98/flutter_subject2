@@ -77,7 +77,8 @@ class HomePage extends StatelessWidget {
                           width: 200,
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
-                              child: Image.asset("albumList[index].imagePath")),
+                              child: Image.asset(
+                                  albumList[index].imagePath.toString())),
                         ),
                         Text(albumList[index].title.toString()),
                         Text(albumList[index].artist.toString()),
