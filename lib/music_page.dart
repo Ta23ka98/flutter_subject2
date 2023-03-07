@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'album.dart';
 
 class MusicPage extends StatefulWidget {
-  //const MusicPage({Key? key}) : super(key: key);
-  MusicPage({required Album album});
+  const MusicPage({Key? key, required this.album}) : super(key: key);
 
-  Album? album;
+  final Album album;
 
   @override
   State<MusicPage> createState() => _MusicPageState();
@@ -24,17 +23,18 @@ class _MusicPageState extends State<MusicPage> {
         children: [
           Container(
             padding: const EdgeInsets.all(30),
-            child: Image.asset("images/music_image1.png"),
+            child: Image.asset(widget.album.imagePath),
           ),
           Column(
-            children: const [
+            children: [
               Text(
-                "Catharsis",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                widget.album.title,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
               Text(
-                "Jacob Muller",
-                style: TextStyle(
+                widget.album.artist,
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     color: Colors.grey),

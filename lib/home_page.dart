@@ -19,6 +19,32 @@ class HomePage extends StatelessWidget {
       title: "KICK BACK",
       artist: "米津玄師",
     ),
+    Album(
+        imagePath: "images/music1.png",
+        title: "伸び仕草懲りて暇乞い",
+        artist: "ずっと真夜中でいいのに"),
+    Album(
+        imagePath: "images/music2.png",
+        title: "Stairway to Heaven",
+        artist: "Led Zeppelin"),
+    Album(
+      imagePath: "images/music3.png",
+      title: "KICK BACK",
+      artist: "米津玄師",
+    ),
+    Album(
+        imagePath: "images/music1.png",
+        title: "伸び仕草懲りて暇乞い",
+        artist: "ずっと真夜中でいいのに"),
+    Album(
+        imagePath: "images/music2.png",
+        title: "Stairway to Heaven",
+        artist: "Led Zeppelin"),
+    Album(
+      imagePath: "images/music3.png",
+      title: "KICK BACK",
+      artist: "米津玄師",
+    ),
   ];
 
   @override
@@ -60,39 +86,11 @@ class HomePage extends StatelessWidget {
           SizedBox(
             height: 300,
             child: ListView.builder(
+              itemCount: albumList.length,
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          height: 200,
-                          width: 200,
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.asset(
-                                  albumList[index].imagePath.toString())),
-                        ),
-                        Text(albumList[index].title.toString()),
-                        Text(albumList[index].artist.toString()),
-                      ],
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) =>
-                                  MusicPage(album: albumList[index])));
-                    },
-                  ),
-                );
+                return AlbumWidget(album: albumList[index]);
               },
             ),
           ),
@@ -241,6 +239,41 @@ class HomePage extends StatelessWidget {
               icon: Icon(Icons.account_circle_outlined), label: "アカウント"),
         ],
         type: BottomNavigationBarType.fixed,
+      ),
+    );
+  }
+}
+
+class AlbumWidget extends StatelessWidget {
+  const AlbumWidget({Key? key, required this.album}) : super(key: key);
+  final Album album;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GestureDetector(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              height: 200,
+              width: 200,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(album.imagePath, fit: BoxFit.cover)),
+            ),
+            Text(album.title),
+            Text(album.artist),
+          ],
+        ),
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => MusicPage(album: album)));
+        },
       ),
     );
   }
